@@ -1,0 +1,8 @@
+camera:
+  name: camera
+  icon: mdi:cctv
+  view: yes
+  entities:
+    - camera.cam1
+    - camera.cam2
+    - camera.cam3

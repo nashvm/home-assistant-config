@@ -1,0 +1,31 @@
+default_view:
+  name: KNX
+  icon: mdi:home
+  view: yes
+  entities:
+    - group.beneden
+    - group.keuken
+    - group.buiten
+    - group.buiten_nacht
+    - group.tuin
+    - group.boven
+    - group.zolder
+    - group.multi_media
+    - group.environment
+    - group.camera
+    - group.family_info
+    - group.weather
+    - group.treinen
+    - group.meter_readings
+
+viewbuiten:
+  name: buiten
+  icon: mdi:flower
+  view: yes
+  entities:
+    - group.camera
+    - group.buiten
+    - group.weather
+    - camera.cam1
+    - camera.cam3
+    - group.weernu

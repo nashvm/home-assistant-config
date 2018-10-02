@@ -1,0 +1,18 @@
+- alias: "Voorkamer: Turn on at sunset + 30min"
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
+  action:
+    service: light.turn_on
+    entity_id: light.Voorkamer_spots
+
+- alias: "Voorkamer: Turn off at midnight"
+  trigger:
+    platform: time
+    hours: 1
+    minutes: 0
+    seconds: 0
+  action:
+    service: light.turn_off
+    entity_id: light.Voorkamer_spots

@@ -1,0 +1,26 @@
+weather:
+   name: Weather
+#   view: yes
+   entities:
+     - sensor.yr_symbol
+     - sun.sun
+
+multi_media:
+  name: Multi Media
+  entities:
+    - media_player.Quad_Audio
+    - media_player.Woonkamer
+
+treinen:
+  name: Treinen
+  entities:
+  - sensor.baarnduivendrecht
+  - sensor.duivendrechtbaarn
+
+meter_readings:
+  name: Meter readings
+  entities:
+    - sensor.power_consumption_low
+    - sensor.power_consumption_normal
+    - sensor.power_tariff
+    - sensor.gas_consumption

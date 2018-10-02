@@ -1,0 +1,318 @@
+title: Thuis
+# Include external resources
+resources:
+  - url: /local/monster-card.js?v=1
+    type: js
+  - url: /local/bignumber-card.js?v=0
+    type: js
+  - url: /local/gauge-card.js?v=0
+    type: js
+
+# Optional background for all views. Check https://developer.mozilla.org/en-US/docs/Web/CSS/background for more examples.
+#background: center / cover no-repeat url("/background.png") fixed
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - weblink.router
+
+##########################################
+name: Thuis
+background: radial-gradient(black, skyblue)
+views:
+  - title: Overzicht
+    icon: mdi:home
+    id: overzicht
+    theme: dark-mode
+    cards:
+      - type: weather-forecast
+       # entity: weather.darksky
+        entity: weather.yweather
+
+      - type: "custom:monster-card"
+        show_empty: false
+        card:
+          type: glance
+          title: Monster
+        filter:
+          include:
+            - entity_id: "*yweather*"
+          exclude: [{}]
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Energie
+        filter:
+          include:
+            - domain: sensor
+          exclude:
+            - entity_id: "*yr*"
+            - entity_id: "*Baarn*"
+            - entity_id: "*Voltage*"
+            - entity_id: "*Production*"
+            - entity_id: "*Hourly*"
+            - entity_id: "*Long*"
+            - entity_id: "*Phase*"
+            - entity_id: "*CoolCam*"
+            - entity_id: "*Power*Consumption"
+
+      - type: custom:gauge-card
+        title: Electra 
+        entity: sensor.power_consumption
+        min: 0
+        max: 5
+        severity:
+          red: 3
+          green: 0
+          amber: 1
+
+      - type: custom:gauge-card
+        title: Gas 
+        entity: sensor.hourly_gas_consumption
+        min: 0
+        max: 0.05
+        severity:
+          red: 0.03
+          green: 0
+          amber: 0.01
+
+      - type: "custom:monster-card"
+        card:
+          type: entities
+          title: All media players
+        filter:
+          include:
+            - domain: media_player
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Wie is er thuis
+        filter:
+          include:
+            - domain: device_tracker
+              state: home
+              options:
+                secondary_info: last-changed
+          exclude:
+            - entity_id: device_tracker.cam1
+            - entity_id: device_tracker.cam2
+            - entity_id: device_tracker.cam3
+            - entity_id: device_tracker.knx
+            - entity_id: device_tracker.pivpn
+            - entity_id: device_tracker.unifi
+
+      - type: custom:monster-card
+        show_empty: false
+        card:
+          type: entities
+          title: Licht
+        filter:
+          include:
+            - domain: light
+              state: 'on'
+            - entity_id: "*switch*CoolCam*"
+              state: 'on'
+          exclude:
+            - entity_id: light.toilet
+
+      - type: "custom:monster-card"
+        show_empty: true
+        card:
+          type: entities
+          title: Deur open
+        filter:
+          include:
+            - entity_id: "binary_sensor.*doorwindow*"
+              state: 'on'
+              options:
+                secondary_info: last-changed
+
+      - type: picture-entity
+        entity: camera.cam1
+      - type: picture-entity
+        entity: camera.cam3
+      - type: picture-entity
+        entity: camera.cam2
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Treinen
+        filter:
+          include:
+            - domain: sensor
+          exclude:
+            - entity_id: "*yr*"
+            - entity_id: "*Voltage*"
+            - entity_id: "*Power*"
+            - entity_id: "*Gas*"
+            - entity_id: "*CoolCam*"
+
+##########################################
+  - title: Security
+    icon: mdi:cctv
+    cards:
+      - type: picture-entity
+        entity: camera.cam1
+      - type: picture-entity
+        entity: camera.cam3
+      - type: picture-entity
+        entity: camera.cam2
+
+##########################################
+  - title: Licht
+    icon: mdi:lamp
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Licht Beneden
+        filter:
+          include:
+            - domain: light
+            - entity_id: "*switch*CoolCam*"
+          exclude:
+            - entity_id: "light.buiten*"
+            - entity_id: "light.SlaapKamer*"
+            - entity_id: "light.Waskamer*"
+            - entity_id: "light.Overloop*"
+            - entity_id: "light.Badkamer*"
+            - entity_id: "light.Zolder*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Licht Boven
+        filter:
+          include:
+            - domain: light
+          exclude:
+            - entity_id: "light.buiten*"
+            - entity_id: "light.keuken*"
+            - entity_id: "light.bijkeuken*"
+            - entity_id: "light.hal*"
+            - entity_id: "light.voorkamer*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Licht Buiten
+        filter:
+          include:
+            - domain: light
+          exclude:
+            - entity_id: "light.SlaapKamer*"
+            - entity_id: "light.Waskamer*"
+            - entity_id: "light.Overloop*"
+            - entity_id: "light.Badkamer*"
+            - entity_id: "light.Zolder*"
+            - entity_id: "light.keuken*"
+            - entity_id: "light.bijkeuken*"
+            - entity_id: "light.hal*"
+            - entity_id: "light.voorkamer*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Licht Scene
+        filter:
+          include:
+            - domain: scene
+
+
+##########################################
+  - title: Energie
+    icon: mdi:power
+    cards:
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Energie
+        filter:
+          include:
+            - domain: sensor
+          exclude:
+            - entity_id: "*yr*"
+            - entity_id: "*Baarn*"
+            - entity_id: "*Voltage*"
+            - entity_id: "*Production*"
+            - entity_id: "*Hourly*"
+            - entity_id: "*Long*"
+            - entity_id: "*CoolCam*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Zwave
+        filter:
+          include:
+            - domain: zwave
+          exclude:
+            - entity_id: "*Long*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Zwave switch
+        filter:
+          include:
+            - domain: switch
+            - domain: sensor
+          exclude:
+            - entity_id: "*CoolCam*Interval*"
+            - entity_id: "*CoolCam*Energy*"
+            - entity_id: "*CoolCam*Current*"
+            - entity_id: "*CoolCam*Energy*"
+            - entity_id: "*CoolCam*Exporting*"
+            - entity_id: "*CoolCam*Previous*"
+            - entity_id: "*CoolCam*Alarm*"
+            - entity_id: "*CoolCam*Management*"
+            - entity_id: "*CoolCam*Voltage*"
+            - entity_id: "*CoolCam*Source*"
+            - entity_id: "*CoolCam*Door*"
+            - entity_id: "*Consumption*"
+            - entity_id: "*Baarn*"
+            - entity_id: "*Gas*"
+            - entity_id: "*Phase*"
+            - entity_id: "*Production*"
+            - entity_id: "*Symbol*"
+            - entity_id: "*Tariff*"
+            - entity_id: "*Long*"
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: Zwave binary
+        filter:
+          include:
+            - domain: binary_sensor
+          exclude:
+            - entity_id: "*Long*"
+
+      - type: "custom:monster-card"
+        card:
+          type: entities
+          title: All switches
+        filter:
+          include:
+            - domain: switch
+          exclude:
+            - entity_id: "*bla*"
+
+      - type: "custom:monster-card"
+        card:
+          type: entities
+          title: All sun
+        filter:
+          include:
+            - domain: sun
+
+      - type: custom:monster-card
+        card:
+          type: entities
+          title: All Sensors
+        filter:
+          include:
+            - domain: sensor
+          exclude:
+            - entity_id: "*bla*"

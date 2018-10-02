@@ -1,0 +1,133 @@
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Hal voordeur
+    address: '0/0/1'
+    state_address: '4/0/1'
+
+# JUNG 2193 REG
+  - platform: knx
+    name: Voorkamer spots
+    address: '0/0/2'
+    brightness_address: '0/1/4'
+    state_address: '4/0/2'
+    brightness_state_address: '4/1/4'
+
+# JUNG 3804 REGHE
+  - platform: knx
+    name: Keuken Nomad
+    address: '0/0/18'
+    brightness_address: '0/1/3'
+    state_address: '4/0/18'
+    brightness_state_address: '4/1/3'
+
+# JUNG 2193 REG
+  - platform: knx
+    name: Keuken spots
+    address: '0/0/13'
+    brightness_address: '0/1/2'
+    state_address: '4/0/13'
+    brightness_state_address: '4/1/2'
+
+# JUNG 2193 REG
+  - platform: knx
+    name: Keuken spots wijn
+    address: '0/0/15'
+    brightness_address: '0/1/1'
+    state_address: '4/0/15'
+    brightness_state_address: '4/1/1'
+
+# JUNG 3804 REGHE
+  - platform: knx
+    name: Keuken Tafel
+    address: '0/0/17'
+    brightness_address: '0/1/5'
+    state_address: '4/0/17'
+    brightness_state_address: '4/1/5'
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Keuken kast
+    address: '0/0/20'
+    state_address: '4/0/20'
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Bijkeuken
+    address: 0/0/4
+    state_address: 4/0/4
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Buiten voor
+    address: 0/0/5
+    state_address: 4/0/5
+
+# JUNG 3804 REGHE
+  - platform: knx
+    name: Buiten terras
+    address: 0/0/21
+    brightness_address: '0/1/6'
+    state_address: 4/0/23
+    brightness_state_address: '4/1/7'
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Buiten tuinhuisje
+    address: 0/0/22
+    state_address: 4/0/22
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Buiten Led Tubes
+    address: 0/0/23
+    state_address: 4/0/21
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: SlaapKamer Voor
+    address: 0/0/6
+    state_address: 4/0/6
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: SlaapKamer Achter
+    address: 0/0/7
+    state_address: 4/0/7
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Waskamer
+    address: 0/0/8
+    state_address: 4/0/8
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Overloop
+    address: 0/0/9
+    state_address: 4/0/9
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Badkamer Spiegel
+    address: 0/0/14
+    state_address: 4/0/14
+
+# JUNG 3804 REGHE
+  - platform: knx
+    name: Badkamer Spots
+    address: 0/0/16
+    brightness_address: '0/1/0'
+    state_address: 4/0/16
+    brightness_state_address: '4/1/0'
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Zolder Voor
+    address: 0/0/10
+    state_address: 4/0/10
+
+# JUNG 2316.16 REG HE
+  - platform: knx
+    name: Zolder Achter
+    address: 0/0/11
+    state_address: 4/0/11

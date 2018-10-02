@@ -1,0 +1,63 @@
+woonkamer:
+  name: Woonkamer
+  entities:
+    - light.Voorkamer_spots
+
+beneden:
+  name: Beneden
+  entities:
+    - light.Hal_voordeur
+    - light.Voorkamer_spots
+    - scene.Romantic
+
+keuken:
+  name: Keuken
+  entities:
+    - light.Keuken_Nomad
+    - light.Keuken_spots
+    - light.Keuken_spots_wijn
+    - light.Keuken_Tafel
+    - light.Keuken_kast
+    - light.Bijkeuken
+
+buiten:
+  name: Buiten
+  entities:
+    - light.Buiten_voor
+    - light.Buiten_terras
+    - light.Buiten_tuinhuisje
+
+buiten_nacht:
+  name: Buiten Nacht
+  entities:
+    - light.Buiten_voor
+    - light.Buiten_terras
+
+boven:
+  name: Boven
+  entities:
+    - light.SlaapKamer_Voor
+    - light.SlaapKamer_Achter
+    - light.Waskamer
+    - light.Overloop
+    - light.Badkamer_Spiegel
+    - light.Badkamer_Spots
+     
+zolder:
+  name: Zolder
+  entities:
+    - light.Zolder_Voor
+    - light.Zolder_Achter
+
+weernu:
+  name: Weer nu
+  view: no
+  entities:
+    - sun.sun
+    - sensor.br_symbol
+    - sensor.br_temperature
+    - sensor.br_precipitation
+    - sensor.br_wind_speed
+    - sensor.br_humidity
+    - sensor.br_pressure
+    - sensor.br_precipitation_forecast_average

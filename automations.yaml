@@ -1,0 +1,14 @@
+- id: '1536524684243'
+  alias: deuropen
+  trigger:
+  - entity_id: binary_sensor.neo_coolcam_doorwindow_detector_sensor
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: device_tracker.androide1d1725d21f4419c
+    state: not_home
+  action:
+  - data: {}
+    service: notify.telegram

@@ -1,0 +1,143 @@
+########################################################################
+- alias: "[SECURITY]: Notify when door opens and no-one is home"
+  id: notifydooropennothome
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_doorwindow_detector_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: device_tracker.androide1d1725d21f4419c
+    state: not_home
+#    - condition: state
+#      entity_id: device_tracker.oneplus_hans
+#      state: 'not_home'
+#    - condition: state
+#      entity_id:  device_tracker.manon
+#      state: 'not_home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Door opened while no-one is home'
+########################################################################
+- alias: "[SECURITY]: Notify when door opens 24:00 - 0700"
+  id: notifydooropen24000700
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_doorwindow_detector_sensor
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: time
+    after: '23:30:00'
+    before: '05:15:00'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Door opened 24:00 - 7:00'
+########################################################################
+# Sent telegram when coming home
+- alias: "Telegram: coming home Manon"
+  trigger:
+    platform: state
+    entity_id: device_tracker.manon, device_tracker.manon_phone
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Home: Manon'
+
+########################################################################
+# Sent telegram when coming home
+- alias: "Telegram: coming home Hans"
+  trigger:
+    platform: state
+    entity_id: device_tracker.oneplus_hans, device_tracker.hans, device_tracker.androide1d1725d21f4419c
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Home: Hans'
+
+########################################################################
+# Sent telegram when leaving
+- alias: "Telegram: away Hans"
+  trigger:
+    platform: state
+    entity_id: device_tracker.oneplus_hans, device_tracker.hans, device_tracker.androide1d1725d21f4419c
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Away: Hans'
+
+########################################################################
+# Sent telegram when leaving
+- alias: "Telegram: away Manon"
+  trigger:
+    platform: state
+    entity_id: device_tracker.manon, device_tracker.manon_phone
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Away: Manon'
+
+########################################################################
+# Sent telegram when coming home
+- alias: "Telegram: coming home Greet"
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphone
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Home: Greet'
+
+########################################################################
+# Sent telegram when leaving
+- alias: "Telegram: away Greet"
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphone
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Away: Greet'
+
+########################################################################
+# Sent telegram when coming home
+- alias: "Telegram: coming home Marga"
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphone_marga
+    from: 'not_home'
+    to: 'home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Home: Marga'
+
+########################################################################
+# Sent telegram when leaving
+- alias: "Telegram: away Marga"
+  trigger:
+    platform: state
+    entity_id: device_tracker.iphone_marga
+    from: 'home'
+    to: 'not_home'
+  action:
+    service: notify.Telegram
+    data:
+      message: 'Away: Marga'
+
+########################################################################

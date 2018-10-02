@@ -1,0 +1,142 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: !secret elevation
+  unit_system: !secret unit_system
+  time_zone: !secret time_zone
+
+  customize:
+    media_player.chromecast:
+      friendly_name: Some chromecast
+      entity_picture: /local/chromecast.jpg
+
+automation: !include_dir_merge_list automation/
+
+binary_sensor:
+
+config:
+
+cast:
+
+cloud:
+
+frontend:
+
+http:
+
+updater:
+
+discovery:
+
+conversation:
+
+history:
+  exclude:
+    domains:
+      - automation
+      - groups
+      - light
+      - media_player
+
+logbook:
+
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+  - platform: dsmr
+    port: /dev/ttyUSB0
+#    port: /dev/ttyAMA0
+    dsmr_version: 5
+  - platform: nederlandse_spoorwegen
+    email: !secret email
+    password: !secret ns_password
+    routes:
+      - name: Baarn-Duivendrecht
+        from: Brn
+        to: Dvd
+      - name: Duivendrecht-Baarn
+        from: Dvd
+        to: Brn
+
+# Weather YWeather
+#weather:
+#  - platform: darksky
+#    api_key: !secret darksky
+
+weather:
+  - platform: yweather
+
+# Text to speech
+tts:
+  - platform: google
+
+media_player 1:
+  - platform: plex
+    entity_namespace: 'plex'
+
+group: !include_dir_merge_named groups/
+
+camera:
+  - platform: foscam
+    name: cam1
+    ip: !secret cam1_ip
+    username: !secret cam1_username
+    password: !secret cam1_password
+
+  - platform: foscam
+    name: cam2
+    ip: !secret cam2_ip
+    username: !secret cam2_username
+    password: !secret cam2_password
+
+  - platform: foscam
+    name: cam3
+    ip: !secret cam3_ip
+    username: !secret cam3_username
+    password: !secret cam3_password
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_ip
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: False
+    new_device_defaults:
+      track_new_devices: True
+      hide_if_away: False
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret bot_api_key
+    allowed_chat_ids:
+      - !secret bot_allowed_chat_ids
+
+notify:
+  - platform: telegram
+    name: Telegram
+    api_key: !secret notify_api_key
+    chat_id: !secret notify_chat_id
+
+# Jung IPS 100 REG
+knx:
+
+light: !include extraconfig/lightgroups.yaml
+
+scene:
+  - name: Romantic
+    platform: knx
+    address: 1/0/1
+    scene_number: 50
+
+script: !include scripts.yaml
+
+switch:
+
+zwave:
+  usb_path: /dev/ttyACM0

@@ -1,0 +1,13 @@
+family_info:
+   name: Family
+   icon: mdi:account-multiple
+   view: yes
+   entities:
+     - device_tracker.manon
+     - device_tracker.manon_phone
+     - device_tracker.hans_oneplus
+     - device_tracker.androide1d1725d21f4419c
+     - sensor.hans_oneplus_location_to_home
+     - sensor.hans_androide1d1725d21f4419c_location_to_home
+     - sensor.manon_location_to_home
+     - sensor.manon_phone_location_to_home

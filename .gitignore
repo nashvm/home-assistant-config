@@ -1,0 +1,11 @@
+*
+!automation/
+!www
+!groups/
+!extraconfig/
+!*.yaml
+!*.py
+!.gitignore
+secrets.yaml
+known_devices.yaml
+*.xml
