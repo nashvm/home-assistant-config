@@ -16,3 +16,21 @@
   action:
     service: light.turn_off
     entity_id: light.Voorkamer_spots
+
+- alias: "Boekenstand: Turn on if Voorkamer On"
+  trigger:
+    platform: state
+    entity_id: light.voorkamer_spots
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_2
+
+- alias: "Boekenstand: Turn on if Voorkamer Off"
+  trigger:
+    platform: state
+    entity_id: light.voorkamer_spots
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_2
