@@ -24,6 +24,13 @@ cloud:
 frontend:
 
 http:
+  trusted_networks:
+    - 127.0.0.1
+    - ::1
+    - 192.168.1.0/24
+
+influxdb:
+  host: 127.0.0.1
 
 updater:
 
@@ -38,6 +45,9 @@ history:
       - groups
       - light
       - media_player
+      - calendar
+      - sensor
+      - switch
 
 logbook:
 
@@ -49,6 +59,12 @@ sun:
 # Weather prediction
 sensor:
   - platform: yr
+    name: Weather
+    forecast: 24
+    monitored_conditions:
+      - temperature
+      - symbol
+      - windSpeed
   - platform: dsmr
     port: /dev/ttyUSB0
 #    port: /dev/ttyAMA0

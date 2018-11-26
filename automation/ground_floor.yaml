@@ -1,5 +1,5 @@
-# Keuken kast light: Turn on if coming home between 7 and 0:30 
-- alias: "Keuken kast light: Turn on if coming home"
+# Beneden aan als thuis
+- alias: "ground_floor: Turn on if coming home after sunset"
   trigger:
     platform: state
     entity_id: device_tracker.manon, device_tracker.manon_phone, device_tracker.oneplus_hans, device_tracker.hans, device_tracker.androide1d1725d21f4419c
@@ -10,21 +10,21 @@
      conditions:
        - condition: or
          conditions:
-           - condition: time
-             after: '07:00:00'
+           - condition: sun
+             after: sunset
            - condition: time
              before: '00:30:00'
   action:
     service: light.turn_on
-    entity_id: light.Keuken_kast
+    entity_id: light.Keuken_kast, light.Keuken_spots, light.Keuken_spots_wijn
 
 ########################################################################
-# Keuken kast light: Turn on if 7 hour and home
-- alias: "Keuken kast light: Turn on if 7 hour and home"
+# Beneden aan als thuis: na zons ondergang
+- alias: "ground floor: Turn on sunset and home"
   trigger:
-    platform: time
-    hours: 7
-    minutes: 0
+    platform: sun
+    event: sunset
+    offset: "-00:30:00"
   condition:
     condition: and
     conditions:
@@ -44,25 +44,16 @@
             state: 'home'
   action:
     service: light.turn_on
-    entity_id: light.Keuken_kast
+    entity_id: light.Keuken_kast, light.Keuken_spots, light.Keuken_spots_wijn
 
 ########################################################################
-# Keuken kast light: Turn off if not home between 7 and 0:30
-- alias: "Keuken kast light: Turn off if home"
+# beneden light: Turn off at 1
+- alias: "Groundfloor: Turn off at midnight"
   trigger:
-    platform: state
-    entity_id: device_tracker.manon, device_tracker.manon_phone, device_tracker.androide1d1725d21f4419c
-    from: 'home'
-    to: 'not_home'
-  condition:
-     condition: and
-     conditions:
-       - condition: or
-         conditions:
-           - condition: time
-             after: '07:00:00'
-           - condition: time
-             before: '00:30:00'
+    platform: time
+    hours: 1
+    minutes: 0
+    seconds: 0
   action:
     service: light.turn_off
-    entity_id: light.Keuken_kast
+    entity_id: light.Keuken_kast, light.Keuken_spots, light.Keuken_spots_wijn
