@@ -26,7 +26,7 @@
     service: switch.turn_on
     entity_id: switch.neo_coolcam_power_plug_12a_switch_2
 
-- alias: "hout: Turn on if Voorkamer On"
+- alias: "hout: Turn on if Voorkamer on"
   trigger:
     platform: state
     entity_id: light.voorkamer_spots
@@ -35,7 +35,38 @@
     service: switch.turn_on
     entity_id: switch.neo_coolcam_power_plug_12a_switch
 
-- alias: "Boekenstand: Turn on if Voorkamer Off"
+- alias: "Nomad: Turn on if PIR Keuken On"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_battery_powered_pir_sensor_sensor
+    to: 'on'
+  condition:
+    - condition: numeric_state
+      entity_id: sensor.Neo_CoolCam_Battery_Powered_PIR_Sensor_Luminance
+      below: 100
+  action:
+    service: light.turn_on
+    entity_id: light.keuken_nomad
+
+- alias: "3: Turn on if Wijn On"
+  trigger:
+    platform: state
+    entity_id: light.keuken_spots_wijn
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_3
+
+- alias: "4: Turn on if Wijn On"
+  trigger:
+    platform: state
+    entity_id: light.keuken_spots_wijn
+    to: 'on'
+  action:
+    service: switch.turn_on
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_4
+
+- alias: "Boekenstand: Turn off if Voorkamer Off"
   trigger:
     platform: state
     entity_id: light.voorkamer_spots
@@ -44,7 +75,7 @@
     service: switch.turn_off
     entity_id: switch.neo_coolcam_power_plug_12a_switch_2
 
-- alias: "hout: Turn on if Voorkamer Off"
+- alias: "hout: Turn off if Voorkamer Off"
   trigger:
     platform: state
     entity_id: light.voorkamer_spots
@@ -52,3 +83,33 @@
   action:
     service: switch.turn_off
     entity_id: switch.neo_coolcam_power_plug_12a_switch
+
+- alias: "3: Turn off if wijn Off"
+  trigger:
+    platform: state
+    entity_id: light.keuken_spots_wijn
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_3
+
+- alias: "4: Turn off if wijn Off"
+  trigger:
+    platform: state
+    entity_id: light.keuken_spots_wijn
+    to: 'off'
+  action:
+    service: switch.turn_off
+    entity_id: switch.neo_coolcam_power_plug_12a_switch_4
+
+- alias: "Nomad: Turn off if PIR Keuken off"
+  trigger:
+    platform: state
+    entity_id: binary_sensor.neo_coolcam_battery_powered_pir_sensor_sensor
+    to: 'off'
+    for:
+      minutes: 1
+  action:
+    service: light.turn_off
+    entity_id: light.keuken_nomad
+
